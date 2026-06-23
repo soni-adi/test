@@ -21,7 +21,7 @@ app.use('/api/connections', require('./routes/connections'));
 app.use('/api/sets',        require('./routes/sets'));
 app.get('/api/health', (_, res) => res.json({ status: 'ok', app: 'AurreX' }));
 app.use((err, req, res, next) => res.status(500).json({ error: err.message }));
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/aurrex')
+mongoose.connect(process.env.MONGO_URI)
   .then(async () => {
     console.log('✅ MongoDB connected');
     await require('./utils/seed').createDemoUser();
